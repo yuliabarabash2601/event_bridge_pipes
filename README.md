@@ -10,7 +10,6 @@ This repository contains Terraform code for setting up AWS resources to forward 
 - [Usage](#usage)
 - [Prerequisites](#prerequisites)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Installation
 
@@ -28,7 +27,7 @@ This repository contains Terraform code for setting up AWS resources to forward 
 
 1. Validate the setup:
    ```
-   terraform plan
+   terraform validate
    ```
 
 2. Apply the Terraform configuration:

@@ -42,9 +42,19 @@ resource "aws_iam_role_policy_attachment" "policy_attachment" {
   policy_arn = aws_iam_policy.policy.arn
 }
 
+locals {
+  pipe_name = "example-pipe"
+}
+
 resource "aws_pipes_pipe" "example" {
-  name       = "example-pipe"
+  name       = local.pipe_name
   role_arn   = aws_iam_role.pipe_role.arn
   source     = module.dynamodb_table.dynamodb_table_stream_arn
-  target     = module.eventbridge.eventbus_arn
+  target     = module.eventbridge.eventbridge_bus_arn
+  source_parameters {
+    dynamodb_stream_parameters {
+      batch_size        = 1
+      starting_position = "LATEST"
+    }
+  }
 }
